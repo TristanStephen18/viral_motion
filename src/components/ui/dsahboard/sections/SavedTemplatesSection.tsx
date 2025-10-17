@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import {
   FiSearch,
   FiImage,
-  FiVideo,
   FiCheck,
   FiTrash2,
   FiArrowLeft,
