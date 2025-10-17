@@ -46,15 +46,6 @@ export const ChatStylePanel: React.FC<{
     { id: "whatsapp", label: "WhatsApp", logo: "/images/logos/whatsapp.png" },
   ];
 
-  const fonts = [
-    "Inter, sans-serif",
-    "Roboto, sans-serif",
-    "Open Sans, sans-serif",
-    "Poppins, sans-serif",
-    "Georgia, serif",
-    "Courier New, monospace",
-  ];
-
   return (
     <div
       style={{
