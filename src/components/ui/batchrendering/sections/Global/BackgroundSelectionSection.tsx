@@ -14,7 +14,7 @@ import {
   barGraphImages,
   serverImages,
 } from "../../../../../data/BackgroundImages";
-import { backendPrefix, token } from "../../../../../config";
+import { backendPrefix } from "../../../../../config";
 
 interface BackgroundImagesSelectionInterface {
   isRendering: boolean;
@@ -86,7 +86,7 @@ export const BackgroundImageSelectionBatchRendering: React.FC<
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
               },
               body: JSON.stringify({
                 type: "image",

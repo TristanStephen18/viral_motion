@@ -1,6 +1,5 @@
 import type React from "react";
 import { useState } from "react";
-import { backendPrefix } from "../../../../config";
 
 export interface BgProps {
   backgroundSource: string;
