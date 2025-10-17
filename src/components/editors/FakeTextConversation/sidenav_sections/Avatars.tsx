@@ -1,5 +1,4 @@
 import React from "react";
-import { backendPrefix } from "../../../../config";
 
 export const AvatarSelector: React.FC<{
   avatars: { left: string; right: string };
@@ -13,9 +12,9 @@ export const AvatarSelector: React.FC<{
   };
 
   const categories = {
-    vector: Array.from({ length: 10 }, (_, i) => `${backendPrefix}/images/vectors/v${i + 1}.jpg`),
-    people: Array.from({ length: 10 }, (_, i) => `${backendPrefix}/images/people/p${i + 1}.jpg`),
-    random: Array.from({ length: 10 }, (_, i) => `${backendPrefix}/images/random/r${i + 1}.jpg`),
+    vector: Array.from({ length: 10 }, (_, i) => `https://remotion-backend-b2vw.onrender.com/images/vectors/v${i + 1}.jpg`),
+    people: Array.from({ length: 10 }, (_, i) => `https://remotion-backend-b2vw.onrender.com/images/people/p${i + 1}.jpg`),
+    random: Array.from({ length: 10 }, (_, i) => `https://remotion-backend-b2vw.onrender.com/images/random/r${i + 1}.jpg`),
   };
 
   const getRole = (src: string): "left" | "right" | null => {

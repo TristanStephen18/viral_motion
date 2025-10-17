@@ -17,7 +17,6 @@ import { LoadingOverlay } from "../../ui/modals/LoadingProjectModal";
 import { useParams } from "react-router-dom";
 import { useFileUpload } from "../../../hooks/uploads/HandleImageUpload";
 import { useBackgroundImages } from "../../../hooks/datafetching/UserImagesAndOnlineImages";
-import { backendPrefix } from "../../../config";
 
 export const KpiFlipCardEditor: React.FC = () => {
   const { id } = useParams();
@@ -32,7 +31,7 @@ export const KpiFlipCardEditor: React.FC = () => {
 
   // Background
   const [backgroundImage, setBackgroundImage] = useState(
-    `${backendPrefix}/bgimages/colors/bg1.jpg`
+    `https://remotion-backend-b2vw.onrender.com/bgimages/colors/bg1.jpg`
   );
   const [backgroundSource, setBackgroundSource] = useState<
     "upload" | "default"
@@ -187,7 +186,7 @@ export const KpiFlipCardEditor: React.FC = () => {
       if (!finalImageUrl.startsWith(origin))
         finalImageUrl = `${origin}${finalImageUrl}`;
 
-      const response = await fetch(`${backendPrefix}/generatevideo/kpiflipcard`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/generatevideo/kpiflipcard`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -222,7 +221,7 @@ export const KpiFlipCardEditor: React.FC = () => {
       const result = await response.json();
       const renderUrl = result.url;
       if (renderUrl) {
-        const saveResponse = await fetch(`${backendPrefix}/renders`, {
+        const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/renders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -292,14 +291,14 @@ export const KpiFlipCardEditor: React.FC = () => {
       cardFrontColor,
       valueFontSize,
     }),
-    videoEndpoint: `${backendPrefix}/generatevideo/kpiflipcard`,
+    videoEndpoint: `https://remotion-backend-b2vw.onrender.com/generatevideo/kpiflipcard`,
   });
 
   // 🟢 Load project if editing existing
   useEffect(() => {
     if (id) {
       setIsLoading(true);
-      fetch(`${backendPrefix}/projects/${id}`, {
+      fetch(`https://remotion-backend-b2vw.onrender.com/projects/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {

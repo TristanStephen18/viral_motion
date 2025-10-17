@@ -10,7 +10,7 @@ import { SaveProjectModal } from "../../ui/modals/SaveModal";
 import { LoadingOverlay } from "../../ui/modals/LoadingProjectModal";
 import { useProjectSave } from "../../../hooks/SaveProject";
 import { useParams } from "react-router-dom";
-import { backendPrefix } from "../../../config";
+
 
 export const KenBurnsEditor: React.FC = () => {
   const { id } = useParams();
@@ -42,7 +42,7 @@ export const KenBurnsEditor: React.FC = () => {
   const [userUploads, setUserUploads] = useState<any[]>();
 
   const fetchUploads = () => {
-    fetch(`${backendPrefix}/useruploads/images`, {
+    fetch(`https://remotion-backend-b2vw.onrender.com/useruploads/images`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -114,7 +114,7 @@ export const KenBurnsEditor: React.FC = () => {
 
       setIsExporting(true);
       try {
-        const response = await fetch(`${backendPrefix}/generatevideo/kenburnsswipe`, {
+        const response = await fetch(`https://remotion-backend-b2vw.onrender.com/generatevideo/kenburnsswipe`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -129,7 +129,7 @@ export const KenBurnsEditor: React.FC = () => {
         const data = await response.json();
         const renderUrl = data.url;
         if (renderUrl) {
-          const saveResponse = await fetch(`${backendPrefix}/renders`, {
+          const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/renders`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -181,14 +181,14 @@ export const KenBurnsEditor: React.FC = () => {
       cardWidthRatio,
       cardHeightRatio,
     }),
-    videoEndpoint: `${backendPrefix}/generatevideo/kenburnsswipe`,
+    videoEndpoint: `https://remotion-backend-b2vw.onrender.com/generatevideo/kenburnsswipe`,
   });
 
   // 🟢 Load project if editing existing
   useEffect(() => {
     if (id) {
       setIsLoading(true);
-      fetch(`/${backendPrefix}projects/${id}`, {
+      fetch(`/https://remotion-backend-b2vw.onrender.comprojects/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {

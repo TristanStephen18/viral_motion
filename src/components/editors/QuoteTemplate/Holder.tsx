@@ -17,7 +17,6 @@ import { LoadingOverlay } from "../../ui/modals/LoadingProjectModal";
 import { SaveProjectModal } from "../../ui/modals/SaveModal";
 import { useFileUpload } from "../../../hooks/uploads/HandleImageUpload";
 import { useBackgroundImages } from "../../../hooks/datafetching/UserImagesAndOnlineImages";
-import { backendPrefix } from "../../../config";
 import toast from "react-hot-toast";
 
 export const QuoteTemplateEditor: React.FC = () => {
@@ -35,7 +34,7 @@ export const QuoteTemplateEditor: React.FC = () => {
   const [quote, setQuote] = useState("Your Quote");
   const [author, setAuthor] = useState("Author");
   const [backgroundImage, setBackgroundImage] = useState(
-    `${backendPrefix}/bgimages/colors/bg1.jpg`
+    `https://remotion-backend-b2vw.onrender.com/bgimages/colors/bg1.jpg`
   );
   const [backgroundSource, setBackgroundSource] = useState<
     "upload" | "default"
@@ -106,7 +105,7 @@ export const QuoteTemplateEditor: React.FC = () => {
     if (id) {
   
       setIsLoading(true);
-      fetch(`${backendPrefix}/projects/${id}`, {
+      fetch(`https://remotion-backend-b2vw.onrender.com/projects/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {
@@ -147,7 +146,7 @@ export const QuoteTemplateEditor: React.FC = () => {
   const handleAISuggestion = async () => {
     setIsGenerating(true);
     try {
-      const response = await fetch(`${backendPrefix}/api/generate-quote`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/api/generate-quote`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
@@ -183,7 +182,7 @@ export const QuoteTemplateEditor: React.FC = () => {
 
     try {
       let finalImageUrl = backgroundImage;
-      const response = await fetch(`${backendPrefix}/generatevideo/quotetemplatewchoices`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/generatevideo/quotetemplatewchoices`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -207,7 +206,7 @@ export const QuoteTemplateEditor: React.FC = () => {
       const data = await response.json();
       const renderUrl = data.url;
       if (renderUrl) {
-        const saveResponse = await fetch(`${backendPrefix}/renders`, {
+        const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/renders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -279,7 +278,7 @@ export const QuoteTemplateEditor: React.FC = () => {
       fontfamily: fontFamily,
       duration,
     }),
-    videoEndpoint: `${backendPrefix}/generatevideo/quotetemplatewchoices`,
+    videoEndpoint: `https://remotion-backend-b2vw.onrender.com/generatevideo/quotetemplatewchoices`,
   });
 
   useEffect(() => {

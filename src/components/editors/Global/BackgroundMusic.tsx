@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { backendPrefix } from "../../../config";
 
 export const MusicSelector: React.FC<{
   musicAudio: string;
@@ -10,7 +9,7 @@ export const MusicSelector: React.FC<{
 
   const tracks = Array.from(
     { length: 11 },
-    (_, i) => `${backendPrefix}/soundeffects/bgmusic/bg${i + 1}.mp3`
+    (_, i) => `https://remotion-backend-b2vw.onrender.com/soundeffects/bgmusic/bg${i + 1}.mp3`
   );
 
   const handlePreview = (src: string) => {

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { backendPrefix } from "../../config";
 
 export const userVideos = () => {
   const [recentVideos, setRecentVideos] = useState<string[]>([]);
@@ -21,7 +20,7 @@ export const userVideos = () => {
                   tab === "subwaysurfers" ? "ss" : 
                   tab === "templerun" ? "tr" : "ugc";
     for (let i = 1; i <= videoCounts[tab]; i++) {
-      videos.push(`${backendPrefix}/defaultvideos/${tab}/${prefix}${i}.mp4`);
+      videos.push(`https://remotion-backend-b2vw.onrender.com/defaultvideos/${tab}/${prefix}${i}.mp4`);
     }
   });
 //   return videos;
@@ -31,7 +30,7 @@ setDefaultVidsLoading(false);
 
   const fetchUserVideos = () => {
     setLoadingVideos(true);
-    fetch(`${backendPrefix}/useruploads/videos`, {
+    fetch(`https://remotion-backend-b2vw.onrender.com/useruploads/videos`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

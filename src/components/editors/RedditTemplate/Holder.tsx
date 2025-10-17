@@ -16,7 +16,6 @@ import { useProjectSave } from "../../../hooks/SaveProject";
 import { useParams } from "react-router-dom";
 import { useVideoUpload } from "../../../hooks/uploads/HandleVideoUploads";
 import { userVideos } from "../../../hooks/datafetching/UserVideos";
-import { backendPrefix } from "../../../config";
 import toast from "react-hot-toast";
 
 export const RedditVideoEditor: React.FC = () => {
@@ -50,13 +49,13 @@ export const RedditVideoEditor: React.FC = () => {
 
   const [aiVoice, setAiVoice] = useState("21m00Tcm4TlvDq8ikWAM");
   const [voiceoverPath, setVoiceoverPath] = useState(
-    `${backendPrefix}/soundeffects/reddit/voice.mp3`
+    `https://remotion-backend-b2vw.onrender.com/soundeffects/reddit/voice.mp3`
   );
   const [backgroundVideo, setBackgroundVideo] = useState(
-    `${backendPrefix}/defaultvideos/minecraft/m1.mp4`
+    `https://remotion-backend-b2vw.onrender.com/defaultvideos/minecraft/m1.mp4`
   );
   const [backgroundMusicPath, setBackgroundMusicPath] = useState(
-    `${backendPrefix}/soundeffects/bgmusic/bg11.mp3`
+    `https://remotion-backend-b2vw.onrender.com/soundeffects/bgmusic/bg11.mp3`
   );
   const [serverAudio, setServerAudio] = useState("");
 
@@ -124,7 +123,7 @@ export const RedditVideoEditor: React.FC = () => {
       setPostError(null);
       setFetchedPost(null);
 
-      const res = await fetch(`${backendPrefix}/reddit/getpost`, {
+      const res = await fetch(`https://remotion-backend-b2vw.onrender.com/reddit/getpost`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: postUrl }),
@@ -151,7 +150,7 @@ export const RedditVideoEditor: React.FC = () => {
     setIsUpdatingTemplate(true);
     if (fetchedPost) {
       try {
-        const res = await fetch(`${backendPrefix}/sound/reddit`, {
+        const res = await fetch(`https://remotion-backend-b2vw.onrender.com/sound/reddit`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -182,7 +181,7 @@ export const RedditVideoEditor: React.FC = () => {
   const handleExport = async (format: string) => {
     setIsExporting(true);
     try {
-      const response = await fetch(`${backendPrefix}/generatevideo/redditvideo`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/generatevideo/redditvideo`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -201,7 +200,7 @@ export const RedditVideoEditor: React.FC = () => {
       const data = await response.json();
       const renderUrl = data.url;
       if (renderUrl) {
-        const saveResponse = await fetch(`${backendPrefix}/renders`, {
+        const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/renders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -262,7 +261,7 @@ export const RedditVideoEditor: React.FC = () => {
       backgroundVideo,
       backgroundMusicPath,
     }),
-    videoEndpoint: `${backendPrefix}/generatevideo/redditvideo`,
+    videoEndpoint: `https://remotion-backend-b2vw.onrender.com/generatevideo/redditvideo`,
 
     // 👇 Filter before hitting the render API
     filterRenderProps: (props) => {
@@ -283,7 +282,7 @@ export const RedditVideoEditor: React.FC = () => {
   useEffect(() => {
     if (id) {
       setIsLoading(true);
-      fetch(`${backendPrefix}/projects/${id}`, {
+      fetch(`https://remotion-backend-b2vw.onrender.com/projects/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {
@@ -302,7 +301,7 @@ export const RedditVideoEditor: React.FC = () => {
           setRedditData(props.redditData || script);
           setAiVoice(props.aiVoice || "21m00Tcm4TlvDq8ikWAM");
           setVoiceoverPath(
-            props.serverAudio || `${backendPrefix}/soundeffects/reddit/voice.mp3`
+            props.serverAudio || `https://remotion-backend-b2vw.onrender.com/soundeffects/reddit/voice.mp3`
           );
           setDuration(props.duration || Math.ceil(script.duration) + 2);
 

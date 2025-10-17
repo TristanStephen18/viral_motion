@@ -16,7 +16,6 @@ import { useProjectSave } from "../../../hooks/SaveProject";
 import { useParams } from "react-router-dom";
 import { useFileUpload } from "../../../hooks/uploads/HandleImageUpload";
 import { useBackgroundImages } from "../../../hooks/datafetching/UserImagesAndOnlineImages";
-import { backendPrefix } from "../../../config";
 
 export const FactCardsEditor: React.FC = () => {
   const { id } = useParams();
@@ -122,7 +121,7 @@ export const FactCardsEditor: React.FC = () => {
     setIsExporting(true);
     try {
       let finalImageUrl = backgroundImage;
-      const response = await fetch(`${backendPrefix}/generatevideo/factstemplaterender`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/generatevideo/factstemplaterender`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -144,7 +143,7 @@ export const FactCardsEditor: React.FC = () => {
       const data = await response.json();
       const renderUrl = data.url;
       if (renderUrl) {
-        const saveResponse = await fetch(`${backendPrefix}/renders`, {
+        const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/renders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -201,14 +200,14 @@ export const FactCardsEditor: React.FC = () => {
       fontFamilySubtitle: subtitleFontFamily,
       duration,
     }),
-    videoEndpoint: `${backendPrefix}/generatevideo/factstemplaterender`,
+    videoEndpoint: `https://remotion-backend-b2vw.onrender.com/generatevideo/factstemplaterender`,
   });
 
 
   useEffect(() => {
     if (id) {
       setIsLoading(true);
-      fetch(`${backendPrefix}/projects/${id}`, {
+      fetch(`https://remotion-backend-b2vw.onrender.com/projects/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { backendPrefix } from "../../config";
 
 export const useBackgroundImages = () => {
   const [userUploads, setUserUploads] = useState<string[]>([]);
@@ -12,7 +11,7 @@ export const useBackgroundImages = () => {
 
   const fetchUserUploads = () => {
     setLoadingUploads(true);
-    fetch(`${backendPrefix}/useruploads/images`, {
+    fetch(`https://remotion-backend-b2vw.onrender.com/useruploads/images`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
       },
@@ -30,7 +29,7 @@ export const useBackgroundImages = () => {
 
   const fetchOnlineImages = (query: string) => {
     setLoadingOnline(true);
-    fetch(`${backendPrefix}/pixabay/images?query=${encodeURIComponent(query)}`)
+    fetch(`https://remotion-backend-b2vw.onrender.com/pixabay/images?query=${encodeURIComponent(query)}`)
       .then((res) => res.json())
       .then((data) => {
         setOnlineImages(data.hits.map((hit: any) => hit.webformatURL));

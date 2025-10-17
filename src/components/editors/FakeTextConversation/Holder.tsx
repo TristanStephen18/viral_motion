@@ -17,7 +17,6 @@ import { useProjectSave } from "../../../hooks/SaveProject";
 import { useParams } from "react-router-dom";
 import { useVideoUpload } from "../../../hooks/uploads/HandleVideoUploads";
 import { userVideos } from "../../../hooks/datafetching/UserVideos";
-import { backendPrefix } from "../../../config";
 
 type ChatLine = { speaker: "person_1" | "person_2"; text: string };
 
@@ -44,15 +43,15 @@ export const FakeTextConversationEditor: React.FC = () => {
   const [fontSize, setFontSize] = useState(28);
   const [fontColor, setFontColor] = useState("");
 
-  const [bgVideo, setBgVideo] = useState(`${backendPrefix}/defaultvideos/minecraft/m1.mp4`);
-  const [chatAudio, setChatAudio] = useState(`${backendPrefix}/fakeconvo/fakeconvo.mp3`);
+  const [bgVideo, setBgVideo] = useState(`https://remotion-backend-b2vw.onrender.com/defaultvideos/minecraft/m1.mp4`);
+  const [chatAudio, setChatAudio] = useState(`https://remotion-backend-b2vw.onrender.com/fakeconvo/fakeconvo.mp3`);
   const [serverAudio, setServerAudio] = useState("");
   const [musicAudio, setMusicAudio] = useState(
-    `${backendPrefix}/soundeffects/bgmusic/bg10.mp3`
+    `https://remotion-backend-b2vw.onrender.com/soundeffects/bgmusic/bg10.mp3`
   );
   const [avatars, setAvatars] = useState({
-    left: `${backendPrefix}/images/vectors/v1.jpg`,
-    right: `${backendPrefix}/images/vectors/v8.jpg`,
+    left: `https://remotion-backend-b2vw.onrender.com/images/vectors/v1.jpg`,
+    right: `https://remotion-backend-b2vw.onrender.com/images/vectors/v8.jpg`,
   });
 
   const [isUpdatingTemplate, setIsUpdatingTemplate] = useState(false);
@@ -124,7 +123,7 @@ export const FakeTextConversationEditor: React.FC = () => {
     setIsUpdatingTemplate(true);
     try {
       const payload = { voices: [voice1, voice2], chats };
-      const res = await fetch(`${backendPrefix}/sound/test-generate`, {
+      const res = await fetch(`https://remotion-backend-b2vw.onrender.com/sound/test-generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -145,7 +144,7 @@ export const FakeTextConversationEditor: React.FC = () => {
   const handleExport = async (format: string) => {
     setIsExporting(true);
     try {
-      const response = await fetch(`${backendPrefix}/generatevideo/faketextconvo`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/generatevideo/faketextconvo`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -170,7 +169,7 @@ export const FakeTextConversationEditor: React.FC = () => {
       const data = await response.json();
       const renderUrl = data.url;
       if (renderUrl) {
-        const saveResponse = await fetch(`${backendPrefix}/renders`, {
+        const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/renders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -238,7 +237,7 @@ export const FakeTextConversationEditor: React.FC = () => {
         avatars,
       };
     },
-    videoEndpoint:`${backendPrefix}/generatevideo/faketextconvo`,
+    videoEndpoint:`https://remotion-backend-b2vw.onrender.com/generatevideo/faketextconvo`,
 
     filterRenderProps: (props) => {
       const {
@@ -258,7 +257,7 @@ export const FakeTextConversationEditor: React.FC = () => {
   useEffect(() => {
     if (id) {
       setIsLoading(true);
-      fetch(`${backendPrefix}/projects/${id}`, {
+      fetch(`https://remotion-backend-b2vw.onrender.com/projects/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {

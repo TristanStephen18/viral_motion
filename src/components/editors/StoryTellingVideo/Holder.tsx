@@ -16,7 +16,6 @@ import { useProjectSave } from "../../../hooks/SaveProject";
 import { useParams } from "react-router-dom";
 import { useVideoUpload } from "../../../hooks/uploads/HandleVideoUploads";
 import { userVideos } from "../../../hooks/datafetching/UserVideos";
-import { backendPrefix } from "../../../config";
 
 export const StoryTellingVideoEditor: React.FC = () => {
   const { id } = useParams();
@@ -46,13 +45,13 @@ export const StoryTellingVideoEditor: React.FC = () => {
   const [aiVoice, setAiVoice] = useState("21m00Tcm4TlvDq8ikWAM");
 
   const [voiceoverPath, setVoiceoverPath] = useState(
-    `${backendPrefix}/soundeffects/story/voice.mp3`
+    `https://remotion-backend-b2vw.onrender.com/soundeffects/story/voice.mp3`
   );
   const [backgroundVideo, setBackgroundVideo] = useState(
-    `${backendPrefix}/defaultvideos/minecraft/m1.mp4`
+    `https://remotion-backend-b2vw.onrender.com/defaultvideos/minecraft/m1.mp4`
   );
   const [backgroundMusicPath, setBackgroundMusicPath] = useState(
-    `${backendPrefix}/soundeffects/bgmusic/bg11.mp3`
+    `https://remotion-backend-b2vw.onrender.com/soundeffects/bgmusic/bg11.mp3`
   );
 
   const [duration, setDuration] = useState(2);
@@ -119,7 +118,7 @@ export const StoryTellingVideoEditor: React.FC = () => {
   async function fetchAiStory() {
     setIsGenerating(true);
     try {
-      const res = await fetch(`${backendPrefix}/api/generate-story`, {
+      const res = await fetch(`https://remotion-backend-b2vw.onrender.com/api/generate-story`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt, genres }),
@@ -136,7 +135,7 @@ export const StoryTellingVideoEditor: React.FC = () => {
   const createVoiceOverandScript = async () => {
     setIsUpdating(true);
     try {
-      const res = await fetch(`${backendPrefix}/sound/story`, {
+      const res = await fetch(`https://remotion-backend-b2vw.onrender.com/sound/story`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content: story, voiceid: aiVoice }),
@@ -157,7 +156,7 @@ export const StoryTellingVideoEditor: React.FC = () => {
   const handleExport = async (format: string) => {
     setIsExporting(true);
     try {
-      const response = await fetch(`${backendPrefix}/generatevideo/storytelling`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/generatevideo/storytelling`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -176,7 +175,7 @@ export const StoryTellingVideoEditor: React.FC = () => {
       const data = await response.json();
       const renderUrl = data.url;
       if (renderUrl) {
-        const saveResponse = await fetch(`${backendPrefix}/renders`, {
+        const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/renders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -239,7 +238,7 @@ export const StoryTellingVideoEditor: React.FC = () => {
       backgroundMusicPath,
     }),
 
-    videoEndpoint: `${backendPrefix}/generatevideo/storytelling`,
+    videoEndpoint: `https://remotion-backend-b2vw.onrender.com/generatevideo/storytelling`,
 
     // 👇 Filter before hitting the render API
     filterRenderProps: (props) => {
@@ -261,7 +260,7 @@ export const StoryTellingVideoEditor: React.FC = () => {
   useEffect(() => {
     if (id) {
       setIsLoading(true);
-      fetch(`${backendPrefix}/projects/${id}`, {
+      fetch(`https://remotion-backend-b2vw.onrender.com/projects/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {
@@ -279,7 +278,7 @@ export const StoryTellingVideoEditor: React.FC = () => {
           setBackgroundVideo(data.props.backgroundVideo);
           setAiVoice(data.props.aiVoice || "21m00Tcm4TlvDq8ikWAM");
           setVoiceoverPath(
-            data.props.serverAudio || `${backendPrefix}/soundeffects/story/voice.mp3`
+            data.props.serverAudio || `https://remotion-backend-b2vw.onrender.com/soundeffects/story/voice.mp3`
           );
           setBackgroundMusicPath(data.props.backgroundMusicPath);
           setFontFamily(data.props.fontFamily);

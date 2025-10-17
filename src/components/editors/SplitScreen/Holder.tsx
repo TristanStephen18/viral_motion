@@ -13,7 +13,7 @@ import { useProjectSave } from "../../../hooks/SaveProject";
 import { useParams } from "react-router-dom";
 import { useVideoUpload } from "../../../hooks/uploads/HandleVideoUploads";
 import { userVideos } from "../../../hooks/datafetching/UserVideos";
-import { backendPrefix } from "../../../config";
+
 
 export const SplitScreenEditor: React.FC = () => {
   const { id } = useParams();
@@ -129,7 +129,7 @@ export const SplitScreenEditor: React.FC = () => {
   const handleExport = async (format: string) => {
     setIsExporting(true);
     try {
-      const response = await fetch(`${backendPrefix}/generatevideo/splitscreen`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/generatevideo/splitscreen`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -150,7 +150,7 @@ export const SplitScreenEditor: React.FC = () => {
       const data = await response.json();
       const renderUrl = data.url;
       if (renderUrl) {
-        const saveResponse = await fetch(`${backendPrefix}/renders`, {
+        const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/renders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -207,14 +207,14 @@ export const SplitScreenEditor: React.FC = () => {
       topVolume,
       duration,
     }),
-    videoEndpoint: `${backendPrefix}/generatevideo/splitscreen`,
+    videoEndpoint: `https://remotion-backend-b2vw.onrender.com/generatevideo/splitscreen`,
   });
 
   // 🟢 Load project if editing existing
   useEffect(() => {
     if (id) {
       setIsLoading(true);
-      fetch(`${backendPrefix}/projects/${id}`, {
+      fetch(`https://remotion-backend-b2vw.onrender.com/projects/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {

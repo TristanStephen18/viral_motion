@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3000/auth/login", {
+      const response = await fetch("https://remotion-backend-b2vw.onrender.com/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

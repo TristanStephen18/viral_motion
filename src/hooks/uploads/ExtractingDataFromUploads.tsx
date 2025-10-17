@@ -1,12 +1,10 @@
-import { backendPrefix } from "../../config";
-
 export async function useDatasetFromUploads(
   fileUrl: string,
   template: string,
   type: string
 ) {
   try {
-    const res = await fetch(`${backendPrefix}/fromuploadsdataset`, {
+    const res = await fetch(`https://remotion-backend-b2vw.onrender.com/fromuploadsdataset`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

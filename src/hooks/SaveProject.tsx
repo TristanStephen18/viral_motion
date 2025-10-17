@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import isEqual from "lodash/isEqual";
-import { backendPrefix } from "../config";
 
 type SaveStatus = "idle" | "saving" | "success" | "error";
 
@@ -50,7 +49,7 @@ export function useProjectSave<T>({
         const exportResult = await exportRes.json();
         const projectVidUrl = exportResult.url;
 
-        const response = await fetch(`${backendPrefix}/projects/update/${projectId}`, {
+        const response = await fetch(`https://remotion-backend-b2vw.onrender.com/projects/update/${projectId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -108,7 +107,7 @@ export function useProjectSave<T>({
       const exportResult = await exportRes.json();
       const projectVidUrl = exportResult.url;
 
-      const response = await fetch(`${backendPrefix}/projects/save`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/projects/save`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

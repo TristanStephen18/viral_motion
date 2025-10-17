@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { backendPrefix } from "../../config";
 
 export const useDatasetsFetching = () => {
   const [loadingDatasets, setLoadingDatasets] = useState(false);
@@ -8,7 +7,7 @@ export const useDatasetsFetching = () => {
 
   const fetchUserDatasets = () => {
     setLoadingDatasets(true);
-    fetch(`${backendPrefix}/datasets`, {
+    fetch(`https://remotion-backend-b2vw.onrender.com/datasets`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
       },

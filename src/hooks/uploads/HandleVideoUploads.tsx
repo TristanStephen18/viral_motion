@@ -1,6 +1,5 @@
 // hooks/useVideoUpload.ts
 import { useState, useCallback } from "react";
-import { backendPrefix } from "../../config";
 
 interface UseVideoUploadResult {
   isUploading: boolean;
@@ -27,7 +26,7 @@ export function useVideoUpload(): UseVideoUploadResult {
       const formData = new FormData();
       formData.append("video", file);
 
-      const response = await fetch(`${backendPrefix}/uploadhandler/upload-video`, {
+      const response = await fetch(`https://remotion-backend-b2vw.onrender.com/uploadhandler/upload-video`, {
         method: "POST",
         body: formData,
       });
@@ -44,7 +43,7 @@ export function useVideoUpload(): UseVideoUploadResult {
       setDuration(videoDuration);
 
       // 🔹 Step 2: Save record in Neon DB
-      const saveResponse = await fetch(`${backendPrefix}/useruploads`, {
+      const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/useruploads`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

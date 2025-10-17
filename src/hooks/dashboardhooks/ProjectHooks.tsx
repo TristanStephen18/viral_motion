@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { backendPrefix } from "../../config";
 
 export const useProjectHooks = () => {
   const [projects, setProjects] = useState<any[]>([]);
@@ -12,7 +11,7 @@ export const useProjectHooks = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await fetch(`${backendPrefix}/projects`, {
+      const res = await fetch(`https://remotion-backend-b2vw.onrender.com/projects`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -45,7 +44,7 @@ export const useProjectHooks = () => {
     try {
       await Promise.all(
         selectedProjects.map((id) =>
-          fetch(`${backendPrefix}/projects/${id}`, {
+          fetch(`https://remotion-backend-b2vw.onrender.com/projects/${id}`, {
             method: "DELETE",
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

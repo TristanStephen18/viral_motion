@@ -35,7 +35,7 @@ const ForgotPasswordPage: React.FC = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("/auth/send-otp", {
+      const res = await fetch("https://remotion-backend-b2vw.onrender.com/auth/send-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -68,7 +68,7 @@ const ForgotPasswordPage: React.FC = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("/auth/verify-otp", {
+      const res = await fetch("https://remotion-backend-b2vw.onrender.com/auth/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp, otpToken: serverOtpToken }),
@@ -97,7 +97,7 @@ const ForgotPasswordPage: React.FC = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("/auth/reset-password", {
+      const res = await fetch("https://remotion-backend-b2vw.onrender.com/auth/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ newPassword, email }),

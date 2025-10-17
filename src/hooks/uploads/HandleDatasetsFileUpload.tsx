@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
 import { detectFileType } from "../../utils/FileTypeDetector";
-import { backendPrefix } from "../../config";
 
 interface useDatasetUploadOptions {
   uploadUrl?: string;
@@ -21,10 +20,10 @@ export function useDatasetUpload(
   options: useDatasetUploadOptions
 ): useDatasetUploadResult {
   const {
-    uploadUrl = `${backendPrefix}/uploadhandler/upload-datasets`,
+    uploadUrl = `https://remotion-backend-b2vw.onrender.com/uploadhandler/upload-datasets`,
     fieldName = "file",
     saveRecord = true,
-    recordUrl = `${backendPrefix}/datasets`,
+    recordUrl = `https://remotion-backend-b2vw.onrender.com/datasets`,
     template,
   } = options;
 

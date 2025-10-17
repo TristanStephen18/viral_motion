@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ImageSlot } from "../../../../batchrendering/ImageSlotKenBurns";
 import { ChooseUploadModalBatchRenderingKenburns } from "../../../modals/ChooseUploadModalBatchRenderingKenBurns";
-import { backendPrefix, token } from "../../../../../config";
 
 interface ImagesSectionInterface {
   userImages: string[];
@@ -66,7 +65,7 @@ export const ImagesSection: React.FC<ImagesSectionInterface> = ({
 
                 try {
                   const res = await fetch(
-                    `${backendPrefix}/uploadhandler/upload-multiple-kenburns-images`,
+                    `https://remotion-backend-b2vw.onrender.com/uploadhandler/upload-multiple-kenburns-images`,
                     {
                       method: "POST",
                       body: formData,
@@ -83,12 +82,12 @@ export const ImagesSection: React.FC<ImagesSectionInterface> = ({
                     for (const imgObj of data.images) {
                       try {
                         const saveResponse = await fetch(
-                          `${backendPrefix}/useruploads`,
+                          `https://remotion-backend-b2vw.onrender.com/useruploads`,
                           {
                             method: "POST",
                             headers: {
                               "Content-Type": "application/json",
-                              Authorization: `Bearer ${token}`,
+                              Authorization: `Bearer ${localStorage.getItem("token")}`,
                             },
                             body: JSON.stringify({
                               type: "image",
@@ -161,7 +160,7 @@ export const ImagesSection: React.FC<ImagesSectionInterface> = ({
 
                 try {
                   const res = await fetch(
-                    `${backendPrefix}/uploadhandler/upload-kenburns-folder`,
+                    `https://remotion-backend-b2vw.onrender.com/uploadhandler/upload-kenburns-folder`,
                     {
                       method: "POST",
                       body: formData,
@@ -177,12 +176,12 @@ export const ImagesSection: React.FC<ImagesSectionInterface> = ({
                     for (const imgObj of data.images) {
                       try {
                         const saveResponse = await fetch(
-                          `${backendPrefix}/useruploads`,
+                          `https://remotion-backend-b2vw.onrender.com/useruploads`,
                           {
                             method: "POST",
                             headers: {
                               "Content-Type": "application/json",
-                              Authorization: `Bearer ${token}`,
+                              Authorization: `Bearer ${localStorage.getItem("token")}`,
                             },
                             body: JSON.stringify({
                               type: "image",
@@ -277,7 +276,7 @@ export const ImagesSection: React.FC<ImagesSectionInterface> = ({
               const formData = new FormData();
               formData.append("image", file);
               const res = await fetch(
-                `${backendPrefix}/uploadhandler/upload-kenburns-image`,
+                `https://remotion-backend-b2vw.onrender.com/uploadhandler/upload-kenburns-image`,
                 {
                   method: "POST",
                   body: formData,
@@ -291,11 +290,11 @@ export const ImagesSection: React.FC<ImagesSectionInterface> = ({
                   return arr;
                 });
 
-                const saveResponse = await fetch(`${backendPrefix}/useruploads`, {
+                const saveResponse = await fetch(`https://remotion-backend-b2vw.onrender.com/useruploads`, {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                   },
                   body: JSON.stringify({ type: "image", url: data.url }),
                 });

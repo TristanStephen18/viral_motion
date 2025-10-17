@@ -185,7 +185,7 @@ export const BackgroundSecTrial: React.FC<BgProps> = ({
           >
             {DEFAULT_TABS.flatMap((cat) =>
               Array.from({ length: 21 }).map((_, i) => {
-                const imgUrl = `${backendPrefix}/bgimages/${cat}/bg${i + 1}.jpg`;
+                const imgUrl = `https://remotion-backend-b2vw.onrender.com/bgimages/${cat}/bg${i + 1}.jpg`;
                 return (
                   <img
                     key={`${cat}-${i}`}
