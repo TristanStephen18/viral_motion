@@ -9,11 +9,9 @@ import Dashboard from "./pages/user/D2.tsx";
 import { FactCardsEditor } from "./components/editors/FactCardsTemplate/Holder.tsx";
 import { QuoteTemplateEditor } from "./components/editors/QuoteTemplate/Holder.tsx";
 import { BarGraphEditor } from "./components/editors/BarGraph/Holder.tsx";
-import GraphEditor from "./components/editors/trials/Clt.tsx";
 import { SplitScreenEditor } from "./components/editors/SplitScreen/Holder.tsx";
 import { KpiFlipCardEditor } from "./components/editors/KpiFlipCards/Holder.tsx";
 import { KenBurnsEditor } from "./components/editors/KenBurnsCarousel/Holder.tsx";
-import { Fakeconvo } from "./components/editors/trials/FConvo.tsx";
 import { FakeTextConversationEditor } from "./components/editors/FakeTextConversation/Holder.tsx";
 import { RedditVideoEditor } from "./components/editors/RedditTemplate/Holder.tsx";
 import { StoryTellingVideoEditor } from "./components/editors/StoryTellingVideo/Holder.tsx";
@@ -35,14 +33,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/gedit"
-          element={
-            <RequireAuth>
-              <GraphEditor />
-            </RequireAuth>
-          }
-        />
         <Route
           path="/template/quotetemplate"
           element={
@@ -284,7 +274,6 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
         <Route path="/" element={<LoginPage />} />
-        <Route path="/sound" element={<Fakeconvo />} />
 
         <Route path="/signup" element={<SignupPage />} />
         <Route
