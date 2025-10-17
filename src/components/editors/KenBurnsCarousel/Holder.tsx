@@ -10,7 +10,7 @@ import { SaveProjectModal } from "../../ui/modals/SaveModal";
 import { LoadingOverlay } from "../../ui/modals/LoadingProjectModal";
 import { useProjectSave } from "../../../hooks/SaveProject";
 import { useParams } from "react-router-dom";
-import { backendPrefix, token } from "../../../config";
+import { backendPrefix } from "../../../config";
 
 export const KenBurnsEditor: React.FC = () => {
   const { id } = useParams();
@@ -44,7 +44,7 @@ export const KenBurnsEditor: React.FC = () => {
   const fetchUploads = () => {
     fetch(`${backendPrefix}/useruploads/images`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => {
@@ -133,7 +133,7 @@ export const KenBurnsEditor: React.FC = () => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
               templateId: 8,
@@ -189,7 +189,7 @@ export const KenBurnsEditor: React.FC = () => {
     if (id) {
       setIsLoading(true);
       fetch(`/${backendPrefix}projects/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {
           if (!res.ok) throw new Error("Failed to load project");

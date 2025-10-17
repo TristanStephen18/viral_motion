@@ -19,7 +19,7 @@ import { FactCardsBatchRenderingDatasetSection } from "../../components/ui/batch
 import { FactCardsBatchRenderingAnimationSelectionSection } from "../../components/ui/batchrendering/sections/factcards/AnimtionSelectionSection";
 import { useDatasetsFetching } from "../../hooks/datafetching/DatasetFilesFetching";
 import { useDatasetUpload } from "../../hooks/uploads/HandleDatasetsFileUpload";
-import { backendPrefix, token } from "../../config";
+import { backendPrefix } from "../../config";
 import { FiActivity, FiDatabase, FiDroplet, FiGrid, FiImage, FiMenu, FiType, FiX } from "react-icons/fi";
 
 export const FactCardsBatchRendering: React.FC = () => {
@@ -140,7 +140,7 @@ export const FactCardsBatchRendering: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 7,

@@ -16,7 +16,7 @@ import { TopNavWithSave } from "../../navigations/single_editors/WithSave";
 import { useParams } from "react-router-dom";
 import isEqual from "lodash/isEqual";
 import { LoadingOverlay } from "../../ui/modals/LoadingProjectModal";
-import { backendPrefix, token } from "../../../config";
+import { backendPrefix } from "../../../config";
 
 const initialData = [
   { label: 2015, value: 100 },
@@ -166,7 +166,7 @@ export const CurveLineTrendEditor: React.FC = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             props: currentProps,
@@ -228,7 +228,7 @@ export const CurveLineTrendEditor: React.FC = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
           title: titleFromModal,
@@ -297,7 +297,7 @@ export const CurveLineTrendEditor: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId,
@@ -352,7 +352,7 @@ export const CurveLineTrendEditor: React.FC = () => {
       setIsLoading(true);
       // 🟢 User opened from "My Projects"
       fetch(`${backendPrefix}/projects/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {
           if (!res.ok) throw new Error("Failed to load project");

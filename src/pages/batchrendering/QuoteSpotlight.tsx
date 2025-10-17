@@ -13,7 +13,7 @@ import { QuoteTemplateBatchOutputsSection } from "../../components/ui/batchrende
 import { useBackgroundImages } from "../../hooks/datafetching/UserImagesAndOnlineImages";
 import { useDatasetsFetching } from "../../hooks/datafetching/DatasetFilesFetching";
 import { useDatasetUpload } from "../../hooks/uploads/HandleDatasetsFileUpload";
-import { backendPrefix, token } from "../../config";
+import { backendPrefix } from "../../config";
 import {
   FiDatabase,
   FiDroplet,
@@ -161,7 +161,7 @@ export const QuoteSpotlightBatchRendering: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 1,

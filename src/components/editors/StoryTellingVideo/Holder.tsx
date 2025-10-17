@@ -16,7 +16,7 @@ import { useProjectSave } from "../../../hooks/SaveProject";
 import { useParams } from "react-router-dom";
 import { useVideoUpload } from "../../../hooks/uploads/HandleVideoUploads";
 import { userVideos } from "../../../hooks/datafetching/UserVideos";
-import { backendPrefix, token } from "../../../config";
+import { backendPrefix } from "../../../config";
 
 export const StoryTellingVideoEditor: React.FC = () => {
   const { id } = useParams();
@@ -180,7 +180,7 @@ export const StoryTellingVideoEditor: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 11,
@@ -262,7 +262,7 @@ export const StoryTellingVideoEditor: React.FC = () => {
     if (id) {
       setIsLoading(true);
       fetch(`${backendPrefix}/projects/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {
           if (!res.ok) throw new Error("Failed to load project");

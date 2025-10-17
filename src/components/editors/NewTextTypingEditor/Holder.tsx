@@ -14,7 +14,7 @@ import { useProjectSave } from "../../../hooks/SaveProject";
 import { SaveProjectModal } from "../../ui/modals/SaveModal";
 import { LoadingOverlay } from "../../ui/modals/LoadingProjectModal";
 import { useParams } from "react-router-dom";
-import { backendPrefix, token } from "../../../config";
+import { backendPrefix } from "../../../config";
 
 export const NewTypingEditor: React.FC = () => {
   const { id } = useParams();
@@ -104,7 +104,7 @@ export const NewTypingEditor: React.FC = () => {
     if (id) {
       setIsLoading(true);
       fetch(`${backendPrefix}/projects/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {
           if (!res.ok) throw new Error("Failed to load project");
@@ -199,7 +199,7 @@ export const NewTypingEditor: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 2,

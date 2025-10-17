@@ -11,7 +11,7 @@ import { ImageProportionsSecion } from "../../components/ui/batchrendering/secti
 import { KenBurnsBatchOutputs } from "../../components/ui/batchrendering/sections/kenburnstemplate/BatchOutputs";
 import { BatchRenderingSideNavFooter } from "../../components/ui/batchrendering/sidenav/Footer";
 import { KenburnsBatchRenderingInidicator } from "../../components/ui/batchrendering/progressindicators/KenBurnsProgressIndicator";
-import { backendPrefix, token } from "../../config";
+import { backendPrefix } from "../../config";
 import { FiGrid, FiHash, FiImage, FiMaximize, FiMenu, FiX } from "react-icons/fi";
 
 export const KenBurnsSwipeBatchRendering: React.FC = () => {
@@ -35,7 +35,7 @@ export const KenBurnsSwipeBatchRendering: React.FC = () => {
   const fetchUploads = () => {
     fetch(`${backendPrefix}/useruploads/images`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => {
@@ -74,7 +74,7 @@ export const KenBurnsSwipeBatchRendering: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 8,

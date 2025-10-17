@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { backendPrefix, token } from "../../config";
+import { backendPrefix } from "../../config";
 
 export const userVideos = () => {
   const [recentVideos, setRecentVideos] = useState<string[]>([]);
@@ -33,7 +33,7 @@ setDefaultVidsLoading(false);
     setLoadingVideos(true);
     fetch(`${backendPrefix}/useruploads/videos`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => {

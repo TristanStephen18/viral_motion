@@ -15,7 +15,7 @@ import { KpiFlipCardsDatasetSection } from "../../components/ui/batchrendering/s
 import { KpiFlipCardsBatchOutputs } from "../../components/ui/batchrendering/sections/kpiflipcards/BatchOutputs";
 import { useDatasetsFetching } from "../../hooks/datafetching/DatasetFilesFetching";
 import { useDatasetUpload } from "../../hooks/uploads/HandleDatasetsFileUpload";
-import { backendPrefix, token } from "../../config";
+import { backendPrefix } from "../../config";
 import { FiDatabase, FiDroplet, FiGrid, FiImage, FiMenu, FiType, FiX } from "react-icons/fi";
 
 export const KpiFlipBatchRendering: React.FC = () => {
@@ -137,7 +137,7 @@ export const KpiFlipBatchRendering: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 4,

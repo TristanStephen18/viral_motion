@@ -18,7 +18,7 @@ import { BarGraphBatchOutputsSection } from "../../components/ui/batchrendering/
 import { useDatasetsFetching } from "../../hooks/datafetching/DatasetFilesFetching";
 // import { fontSizeIndicatorQuote } from "../../utils/quotespotlighthelpers";
 import { useDatasetUpload } from "../../hooks/uploads/HandleDatasetsFileUpload";
-import { backendPrefix, token } from "../../config";
+import { backendPrefix } from "../../config";
 import {
   FiDatabase,
   FiGrid,
@@ -135,7 +135,7 @@ export const BarGraphBatchRendering: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 3,

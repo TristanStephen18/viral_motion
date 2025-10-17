@@ -16,7 +16,7 @@ import { useProjectSave } from "../../../hooks/SaveProject";
 import { useParams } from "react-router-dom";
 import { useFileUpload } from "../../../hooks/uploads/HandleImageUpload";
 import { useBackgroundImages } from "../../../hooks/datafetching/UserImagesAndOnlineImages";
-import { backendPrefix, token } from "../../../config";
+import { backendPrefix } from "../../../config";
 
 export const FactCardsEditor: React.FC = () => {
   const { id } = useParams();
@@ -148,7 +148,7 @@ export const FactCardsEditor: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 7,
@@ -209,7 +209,7 @@ export const FactCardsEditor: React.FC = () => {
     if (id) {
       setIsLoading(true);
       fetch(`${backendPrefix}/projects/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {
           if (!res.ok) throw new Error("Failed to load project");

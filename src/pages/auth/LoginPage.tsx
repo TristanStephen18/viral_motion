@@ -46,10 +46,10 @@ const LoginPage: React.FC = () => {
       }
 
       const data = await response.json();
-      toast.success('Log in successful');
+      toast.success('Log in successful. You will be redirected any second...');
 
       localStorage.setItem("token", data.token);
-      setTimeout(() => navigate("/dashboard"), 100);
+      setTimeout(() => navigate("/dashboard"), 1000);
     } catch (err) {
       setError("Login failed. Please try again.");
     } finally {

@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { backendPrefix, token } from "../config";
+import { backendPrefix } from "../config";
 
 export async function updatePassword(oldPassword: string, newPassword: string) {
   try {
@@ -7,7 +7,7 @@ export async function updatePassword(oldPassword: string, newPassword: string) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // or however you store JWT
+        Authorization: `Bearer ${localStorage.getItem("token")}`, // or however you store JWT
       },
       body: JSON.stringify({ oldPassword, newPassword }),
     });

@@ -17,7 +17,7 @@ import { LoadingOverlay } from "../../ui/modals/LoadingProjectModal";
 import { SaveProjectModal } from "../../ui/modals/SaveModal";
 import { useFileUpload } from "../../../hooks/uploads/HandleImageUpload";
 import { useBackgroundImages } from "../../../hooks/datafetching/UserImagesAndOnlineImages";
-import { backendPrefix, token } from "../../../config";
+import { backendPrefix } from "../../../config";
 import toast from "react-hot-toast";
 
 export const QuoteTemplateEditor: React.FC = () => {
@@ -107,7 +107,7 @@ export const QuoteTemplateEditor: React.FC = () => {
   
       setIsLoading(true);
       fetch(`${backendPrefix}/projects/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
         .then((res) => {
           if (!res.ok) throw new Error("Failed to load project");
@@ -211,7 +211,7 @@ export const QuoteTemplateEditor: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 1,

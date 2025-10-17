@@ -15,7 +15,7 @@ import { CurveLineTrendAnimationSelectionSection } from "../../components/ui/bat
 import { CurveLineTrendOutputsSection } from "../../components/ui/batchrendering/sections/curvelinetrend/BatchOutputs";
 import { useDatasetUpload } from "../../hooks/uploads/HandleDatasetsFileUpload";
 import { useDatasetsFetching } from "../../hooks/datafetching/DatasetFilesFetching";
-import { backendPrefix, token } from "../../config";
+import { backendPrefix } from "../../config";
 import { FiActivity, FiDatabase, FiGrid, FiImage, FiMenu, FiType, FiX } from "react-icons/fi";
 
 export const CurveLineTrendBatchRendering: React.FC = () => {
@@ -128,7 +128,7 @@ export const CurveLineTrendBatchRendering: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
             templateId: 5,
