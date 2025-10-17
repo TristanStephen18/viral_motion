@@ -1,2 +1,2 @@
-export const backendPrefix = 'http://localhost:3000';
+export const backendPrefix = 'https://remotion-backend-b2vw.onrender.com';
 export const token = localStorage.getItem("token");
