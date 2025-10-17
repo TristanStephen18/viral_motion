@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 /* LoginExtras.css
    small, focused set of styles for glows/blobs/button inner-shadows/wave animation
    (keeps most layout in Tailwind; these styles provide the "lively" touches)
