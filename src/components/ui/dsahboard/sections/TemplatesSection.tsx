@@ -85,7 +85,7 @@ export const TemplatesSection: React.FC<TemplatesSectionProps> = ({
           .map((template) => (
             <TemplateCard
               key={template.name}
-              label={template.name}
+              label={template.url}
               description={template.description}
               onTry={onTry}
             />
