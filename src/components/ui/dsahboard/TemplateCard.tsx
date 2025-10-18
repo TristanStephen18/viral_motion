@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 interface TemplateCardProps {
   label: string;
   description: string;
+  name: string;
   onTry: (template: string, description: string) => void;
 }
 
@@ -10,6 +11,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
   label,
   description,
   onTry,
+  name
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -59,7 +61,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
       <div className="relative p-4 z-10 flex flex-col justify-between h-[140px] sm:h-[150px]">
         <div>
           <h3 className="text-gray-900 font-semibold text-sm sm:text-base tracking-tight mb-1 group-hover:text-indigo-600 transition-colors duration-300">
-            {label}
+            {name}
           </h3>
           <p className="text-gray-500 text-xs sm:text-sm leading-snug line-clamp-2">
             {description}
