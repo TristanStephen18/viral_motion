@@ -47,7 +47,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
           playsInline
           preload="metadata"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          src={`https://viral-motion.vercel.app/template_previews/${label.replace(/\s+/g, "")}.mp4`}
+          src={`/template_previews/${label.replace(/\s+/g, "")}.mp4`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -81,7 +81,6 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
         </button>
       </div>
 
-      {/* Subtle border edge */}
       <div className="absolute inset-0 rounded-2xl pointer-events-none border border-white/20" />
     </div>
   );
