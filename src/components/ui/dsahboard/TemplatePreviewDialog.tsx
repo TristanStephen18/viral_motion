@@ -101,7 +101,7 @@ export const TemplatePreviewDialog: React.FC<TemplatePreviewDialogProps> = ({
                   objectFit: "contain",
                   display: "block",
                 }}
-                src={`${templateUrlFinder(selectedTemplate)}`}
+                src={`${templateUrlFinder(selectedTemplate as string)}`}
               />
             </Box>
           </Box>
