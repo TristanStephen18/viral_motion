@@ -28,7 +28,7 @@ export const useDatasetsFetching = () => {
     try {
       await Promise.all(
         selectedDatasets.map((id) =>
-          fetch(`http://localhost:3000/datasets/${id}`, {
+          fetch(`https://remotion-backend-b2vw.onrender.com/datasets/${id}`, {
             method: "DELETE",
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
