@@ -70,7 +70,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
 
         {/* Hover-Only Button */}
         <button
-          onClick={() => onTry(label, description)}
+          onClick={() => onTry(name, description)}
           className="mt-3 opacity-100 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 
           transition-all duration-500 ease-out relative inline-flex items-center justify-center w-full py-2 
           font-semibold text-xs sm:text-sm rounded-full text-white overflow-hidden 

@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { TemplateNavigator } from "../../../utils/TemplateNavigator";
+import { templateUrlFinder } from "../../../data/DashboardCardsData";
 
 interface TemplatePreviewDialogProps {
   open: boolean;
@@ -100,7 +101,7 @@ export const TemplatePreviewDialog: React.FC<TemplatePreviewDialogProps> = ({
                   objectFit: "contain",
                   display: "block",
                 }}
-                src={`/template_previews/${selectedTemplate?.replace(/\s+/g, "")}.mp4`}
+                src={`${templateUrlFinder(selectedTemplate)}`}
               />
             </Box>
           </Box>
